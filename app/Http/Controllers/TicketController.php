@@ -14,7 +14,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::latest()->get();
+        $tickets = Ticket::latest()->paginate(6);
         return view('tickets.index', compact('tickets'));
     }
 
@@ -40,7 +40,7 @@ class TicketController extends Controller
             'summary' => ['required'],
             'description' => ['required'],
         ]);
-        
+
         Ticket::create([
             'summary' => request('summary'),
             'description' => request('description'),
