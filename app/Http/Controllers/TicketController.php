@@ -53,7 +53,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        return view('tickets.show', compact('ticket'));
     }
 
     /**
@@ -76,7 +76,16 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        //
+        $ticket->summary = request('summary');
+        $ticket->description = request('description');
+        $ticket->status = request('status');
+        $ticket->save();
+
+        return redirect('tickets');
+    }
+
+    public function delete(Ticket $ticket){
+        return view('tickets.delete', compact('ticket'));
     }
 
     /**
@@ -87,6 +96,8 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+        return redirect('tickets');
+
     }
 }

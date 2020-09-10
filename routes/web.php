@@ -15,3 +15,11 @@ Route::get('/tickets/create', [TicketController::class, 'create']);
 
 Route::post('/tickets/create', [TicketController::class, 'store']);
 
+Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
+
+Route::post('/tickets/{ticket}', [TicketController::class, 'update']);
+
+Route::get('/tickets/delete/{ticket}', [TicketController::class, 'delete']);
+
+Route::post('/tickets/delete/{ticket}', [TicketController::class, 'destroy']);
+
