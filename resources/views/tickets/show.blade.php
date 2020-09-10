@@ -19,15 +19,19 @@
             {{csrf_field()}}
             <div class="form-group">
                 <label for="summary">Summary</label>
-                <input type="text" id="summary" name="summary" class="form-control" value="{{$ticket->summary}}">
+                <input type="text" id="summary" name="summary" class="form-control {{$errors->has('summary') ? 'is-invalid' : ''}}" value="{{old('summary', $ticket->summary)}}">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description" class="form-control" value="{{$ticket->description}}">
+                <input type="text" id="description" name="description" class="form-control {{$errors->has('description') ? 'is-invalid' : ''}}" value="{{old('description', $ticket->description)}}">
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
-                <input type="text" id="status" name="status" class="form-control" value="{{$ticket->status}}">
+                <select class="form-control" id="status" name="status" value="{{$ticket->status}}">
+                    <option value="Open" {{$ticket->status == "Open" ? "selected" : ""}}>Open</option>
+                    <option value="In Progress" {{$ticket->status == "In Progress" ? "selected" : ""}}>In Progress</option>
+                    <option value="Closed" {{$ticket->status == "Closed" ? "selected" : ""}}>Closed</option>
+                </select>
             </div>
             <button class="btn btn-primary" type="submit">Update</button>
         </form>

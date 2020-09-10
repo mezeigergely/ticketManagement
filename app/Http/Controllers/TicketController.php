@@ -36,11 +36,18 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'summary' => ['required'],
+            'description' => ['required'],
+        ]);
+        
         Ticket::create([
             'summary' => request('summary'),
             'description' => request('description'),
             'status' => request('status'),
         ]);
+
+
 
         return redirect('tickets');
     }
@@ -76,6 +83,11 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
+        $request->validate([
+            'summary' => ['required'],
+            'description' => ['required'],
+        ]);
+
         $ticket->summary = request('summary');
         $ticket->description = request('description');
         $ticket->status = request('status');

@@ -19,15 +19,19 @@
             {{csrf_field()}}
             <div class="form-group">
                 <label for="summary">Summary</label>
-                <input type="text" id="summary" name="summary" class="form-control">
+                <input type="text" id="summary" name="summary" class="form-control {{$errors->has('summary') ? 'is-invalid' : ''}}">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description" class="form-control">
+                <input type="text" id="description" name="description" class="form-control {{$errors->has('description') ? 'is-invalid' : ''}}">
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
-                <input type="text" id="status" name="status" class="form-control">
+                <select class="form-control" id="status" name="status">
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Closed</option>
+                </select>
             </div>
             <button class="btn btn-primary" type="submit">Add</button>
         </form>
