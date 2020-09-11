@@ -15,8 +15,20 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::latest()->paginate(6);
-        return view('tickets.index', compact('tickets'));
+        $users = User::all();
+
+        if(request()->has('sort')){
+            $tickets = Ticket::orderBy('created_at', request('sort'))->paginate(5)->appends('sort', request('sort'));
+        } else{
+            $tickets = Ticket::paginate(5);
+        }
+
+        //return view('tickets.index')->with('tickets', $tickets);
+        return view('tickets.index', compact('users', 'tickets'));
+
+
+        //$tickets = Ticket::latest()->paginate(6);
+        //return view('tickets.index', compact('tickets'));
     }
 
     /**
@@ -116,10 +128,12 @@ class TicketController extends Controller
 
     }
 
+
     public function list()
     {
         $users = User::all();
 
         return view('tickets.create', compact('users'));
     }
+
 }

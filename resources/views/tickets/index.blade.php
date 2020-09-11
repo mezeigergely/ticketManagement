@@ -5,12 +5,28 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Tickets</h1>
         </div>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <div>
+            <form class="form-inline mt-2 mt-md-0">
+                <label>Filter by Username &nbsp;</label>
+                <input class="form-control mr-sm-2" type="text" placeholder="User" aria-label="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>Updated at</th>
+                    <th>User</th>
+                    <th>
+                        <a>Created at</a>
+                        <a href="/tickets/?sort=asc">▲</a>
+                        <a href="/tickets/?sort=desc">▼</a>
+                    </th>
+                    <th>
+                        <a>Due date</a>
+                        <a href="/tickets/?sort=asc">▲</a>
+                        <a href="/tickets/?sort=desc">▼</a>
+                    </th>
                     <th>Summary</th>
                     <th>Description</th>
                     <th>Status</th>
@@ -20,7 +36,9 @@
                 <tbody>
                 @foreach($tickets as $ticket)
                 <tr>
+                    <td>{{$ticket->user->name}}</td>
                     <td>{{$ticket->updated_at}}</td>
+                    <td>due date</td>
                     <td>{{$ticket->summary}}</td>
                     <td>{{$ticket->description}}</td>
                     <td>{{$ticket->status}}</td>
