@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -37,19 +38,21 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id' => ['required'],
             'summary' => ['required'],
             'description' => ['required'],
+
         ]);
 
         Ticket::create([
+            'user_id' => request('user_id'),
             'summary' => request('summary'),
             'description' => request('description'),
             'status' => request('status'),
+
         ]);
 
-
-
-        return redirect('tickets');
+        return redirect('/tickets');
     }
 
     /**
@@ -111,5 +114,12 @@ class TicketController extends Controller
         $ticket->delete();
         return redirect('tickets');
 
+    }
+
+    public function list()
+    {
+        $users = User::all();
+
+        return view('tickets.create', compact('users'));
     }
 }

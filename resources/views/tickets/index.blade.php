@@ -5,9 +5,8 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Tickets</h1>
         </div>
-
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <div class="table-responsive">
-            <a class="btn btn-primary" href="/tickets/create">Add New Ticket</a>
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
