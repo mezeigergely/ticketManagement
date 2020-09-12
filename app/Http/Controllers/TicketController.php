@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -40,6 +41,18 @@ class TicketController extends Controller
     {
         return view('tickets.create');
     }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $data = DB::table('users')
+            ->select('*')
+            ->join('tickets', 'users.id', '=', 'tickets.user_id')
+            ->where('name', 'like', '%'.$search.'%')->paginate(5);
+        return view('tickets.search', compact('data'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -77,7 +90,6 @@ class TicketController extends Controller
     {
         return view('tickets.show', compact('ticket'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -135,5 +147,6 @@ class TicketController extends Controller
 
         return view('tickets.create', compact('users'));
     }
+
 
 }

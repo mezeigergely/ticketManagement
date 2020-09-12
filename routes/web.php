@@ -1,9 +1,12 @@
 <?php
 
+use App\Models\Ticket;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
-
+use Symfony\Component\Console\Input\Input;
 
 
 Route::get('/', function () {
@@ -11,6 +14,8 @@ Route::get('/', function () {
 });
 
 Route::get('/tickets/', [TicketController::class, 'index']);
+
+Route::post('/search', [TicketController::class, 'search']);
 
 Route::get('/tickets/create', [TicketController::class, 'create']);
 

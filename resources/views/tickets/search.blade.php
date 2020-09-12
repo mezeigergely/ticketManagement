@@ -38,27 +38,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($tickets as $ticket)
+                @foreach($data as $row)
                 <tr>
-                    <td>{{$ticket->user->name}}</td>
-                    <td>{{$ticket->updated_at}}</td>
+                    <td>{{$row->name}}</td>
+                    <td>{{$row->updated_at}}</td>
                     <td>due date</td>
-                    <td>{{$ticket->summary}}</td>
-                    <td>{{$ticket->description}}</td>
-                    <td>{{$ticket->status}}</td>
+                    <td>{{$row->summary}}</td>
+                    <td>{{$row->description}}</td>
+                    <td>{{$row->status}}</td>
                     <td>
-                        <a href="/tickets/{{$ticket->id}}" class="btn btn-primary">Update</a>
-                        <a href="/tickets/delete/{{$ticket->id}}" class="btn btn-danger">Delete</a>
+                        <a href="/tickets/{{$row->id}}" class="btn btn-primary">Update</a>
+                        <a href="/tickets/delete/{{$row->id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
-            {{$tickets->appends(request()->toArray())->links()}}
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-center pt-4">
-                {{$tickets->links()}}
+                {{$data->links()}}
             </div>
         </div>
 

@@ -21,6 +21,10 @@ class CreateTicketsTable extends Migration
             $table-> string('status');
             $table->timestamps();
         });
+
+        Schema::table('tickets', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
