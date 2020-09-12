@@ -31,6 +31,7 @@
                         <a href="/tickets/?sort=asc">▲</a>
                         <a href="/tickets/?sort=desc">▼</a>
                     </th>
+                    <th>Updated at</th>
                     <th>Summary</th>
                     <th>Description</th>
                     <th>Status</th>
@@ -41,8 +42,9 @@
                 @foreach($tickets as $ticket)
                 <tr>
                     <td>{{$ticket->user->name}}</td>
-                    <td>{{$ticket->updated_at}}</td>
+                    <td>{{$ticket->created_at}}</td>
                     <td>due date</td>
+                    <td>{{$ticket->updated_at}}</td>
                     <td>{{$ticket->summary}}</td>
                     <td>{{$ticket->description}}</td>
                     <td>{{$ticket->status}}</td>

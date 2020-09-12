@@ -31,6 +31,7 @@
                         <a href="/tickets/?sort=asc">▲</a>
                         <a href="/tickets/?sort=desc">▼</a>
                     </th>
+                    <th>Updated at</th>
                     <th>Summary</th>
                     <th>Description</th>
                     <th>Status</th>
@@ -43,6 +44,7 @@
                     <td>{{$row->name}}</td>
                     <td>{{$row->updated_at}}</td>
                     <td>due date</td>
+                    <td>{{$row->updated_at}}</td>
                     <td>{{$row->summary}}</td>
                     <td>{{$row->description}}</td>
                     <td>{{$row->status}}</td>

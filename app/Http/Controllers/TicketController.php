@@ -53,7 +53,6 @@ class TicketController extends Controller
         return view('tickets.search', compact('data'));
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -74,6 +73,7 @@ class TicketController extends Controller
             'summary' => request('summary'),
             'description' => request('description'),
             'status' => request('status'),
+            'creation_time'=> request('creation_time'),
 
         ]);
 
@@ -146,6 +146,14 @@ class TicketController extends Controller
         $users = User::all();
 
         return view('tickets.create', compact('users'));
+    }
+
+    public function due_time()
+    {
+        $creation = DB::table('tickets')
+            ->select('creation_time');
+
+        return view('tickets.due_time', compact('creation'));
     }
 
 

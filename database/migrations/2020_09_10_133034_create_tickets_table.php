@@ -19,11 +19,14 @@ class CreateTicketsTable extends Migration
             $table-> string('summary');
             $table-> text('description');
             $table-> string('status');
+            $table->dateTime('creation_time');
             $table->timestamps();
+
         });
 
         Schema::table('tickets', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 

@@ -17,6 +17,8 @@ Route::get('/tickets/', [TicketController::class, 'index']);
 
 Route::post('/search', [TicketController::class, 'search']);
 
+Route::get('/tickets/due', [TicketController::class, 'due_time']);
+
 Route::get('/tickets/create', [TicketController::class, 'create']);
 
 Route::post('/tickets/create', [TicketController::class, 'store']);

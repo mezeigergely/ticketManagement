@@ -8,7 +8,7 @@
         <form action="" method="post">
             {{csrf_field()}}
 
-            
+
             <div class="form-group">
                 <label for="user_id">User</label>
                 <select id="user_id" name="user_id" class="form-control">
@@ -30,6 +30,14 @@
                 <select class="form-control" id="status" name="status">
                     <option value="Open">Open</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="creation_time">Creation Time</label>
+                <input class="form-control" id="creation_time" name="creation_time" value="{{date("Y-m-d H:i:s l")}}">
+            </div>
+            <div class="form-group">
+                <label for="due_time">Due Time</label>
+                <input class="form-control" id="due_time" name="due_time" value="{{date("Y-m-d H:i:s l", strtotime('+48 hours'))}}">
             </div>
             <button class="btn btn-primary" type="submit">Add</button>
         </form>
