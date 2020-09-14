@@ -33,7 +33,6 @@
                     </th>
                     <th>Updated at</th>
                     <th>Summary</th>
-                    <th>Description</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -46,7 +45,6 @@
                     <td>due date</td>
                     <td>{{$row->updated_at}}</td>
                     <td>{{$row->summary}}</td>
-                    <td>{{$row->description}}</td>
                     <td>{{$row->status}}</td>
                     <td>
                         <a href="/tickets/{{$row->id}}" class="btn btn-primary">Update</a>

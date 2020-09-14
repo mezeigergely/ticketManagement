@@ -3,6 +3,7 @@
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
@@ -19,13 +20,28 @@ Route::post('/search', [TicketController::class, 'search']);
 
 Route::get('/tickets/due', [TicketController::class, 'due_time']);
 
-Route::get('/tickets/create', [TicketController::class, 'create']);
+Route::get('/tickets/create/{id}', function ($id) {
 
-Route::post('/tickets/create', [TicketController::class, 'store']);
+    $user = DB::table('users')->find($id);
+    $ticket = DB::table('tickets')->find($id);
+    return view('tickets.create', compact('ticket', 'user'));
+});
+
+
+Route::post('/tickets/create/{id}', [TicketController::class, 'store']);
+
+Route::get('/success/{ticket}', [TicketController::class, 'success']);
 
 Route::get('/tickets/create', [TicketController::class, 'list']);
 
-Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
+//Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
+
+Route::get('/tickets/{id}', function ($id) {
+
+    $user = DB::table('users')->find($id);
+    $ticket = DB::table('tickets')->find($id);
+    return view('tickets.show', compact('ticket', 'user'));
+});
 
 Route::post('/tickets/{ticket}', [TicketController::class, 'update']);
 

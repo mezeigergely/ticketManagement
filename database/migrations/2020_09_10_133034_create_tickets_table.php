@@ -19,7 +19,6 @@ class CreateTicketsTable extends Migration
             $table-> string('summary');
             $table-> text('description');
             $table-> string('status');
-            $table->dateTime('creation_time');
             $table->timestamps();
 
         });

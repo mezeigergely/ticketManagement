@@ -4,39 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $users = User::all();
-
         if(request()->has('sort')){
             $tickets = Ticket::orderBy('created_at', request('sort'))->paginate(5)->appends('sort', request('sort'));
         } else{
             $tickets = Ticket::paginate(5);
         }
-
-        //return view('tickets.index')->with('tickets', $tickets);
         return view('tickets.index', compact('users', 'tickets'));
-
-
-        //$tickets = Ticket::latest()->paginate(6);
-        //return view('tickets.index', compact('tickets'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('tickets.create');
@@ -53,61 +39,49 @@ class TicketController extends Controller
         return view('tickets.search', compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
             'user_id' => ['required'],
             'summary' => ['required'],
-            'description' => ['required'],
-
+            'description' => ['required']
         ]);
 
         Ticket::create([
             'user_id' => request('user_id'),
             'summary' => request('summary'),
             'description' => request('description'),
-            'status' => request('status'),
-            'creation_time'=> request('creation_time'),
-
+            'status' => request('status')
         ]);
 
-        return redirect('/tickets');
+
+
+        $users = User::all()->find($request->route('id'));
+
+        return redirect("/success/{$users->id}");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
+
+    public function success(Ticket $ticket)
+    {
+
+        return view('tickets.success', compact('ticket'));
+    }
+
+
     public function show(Ticket $ticket)
     {
         return view('tickets.show', compact('ticket'));
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function edit(Ticket $ticket)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Ticket $ticket)
     {
         $request->validate([
@@ -123,21 +97,17 @@ class TicketController extends Controller
         return redirect('tickets');
     }
 
-    public function delete(Ticket $ticket){
+
+    public function delete(Ticket $ticket)
+    {
         return view('tickets.delete', compact('ticket'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Ticket $ticket)
     {
         $ticket->delete();
         return redirect('tickets');
-
     }
 
 
@@ -148,6 +118,7 @@ class TicketController extends Controller
         return view('tickets.create', compact('users'));
     }
 
+
     public function due_time()
     {
         $creation = DB::table('tickets')
@@ -155,6 +126,4 @@ class TicketController extends Controller
 
         return view('tickets.due_time', compact('creation'));
     }
-
-
 }

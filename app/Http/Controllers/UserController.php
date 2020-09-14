@@ -20,12 +20,20 @@ class UserController extends Controller
             'email' => 'required',
         ]);
 
+        /*
         User::create([
             'name' => request('name'),
             'email' => request('email'),
         ]);
 
-        return redirect('/tickets/create');
+        */
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect("/tickets/create/{$user->id}");
     }
 
 

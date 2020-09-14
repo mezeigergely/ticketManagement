@@ -33,7 +33,6 @@
                     </th>
                     <th>Updated at</th>
                     <th>Summary</th>
-                    <th>Description</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -46,7 +45,6 @@
                     <td>due date</td>
                     <td>{{$ticket->updated_at}}</td>
                     <td>{{$ticket->summary}}</td>
-                    <td>{{$ticket->description}}</td>
                     <td>{{$ticket->status}}</td>
                     <td>
                         <a href="/tickets/{{$ticket->id}}" class="btn btn-primary">Update</a>
@@ -56,13 +54,11 @@
                 @endforeach
                 </tbody>
             </table>
-            {{$tickets->appends(request()->toArray())->links()}}
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-center pt-4">
                 {{$tickets->links()}}
             </div>
         </div>
-
     </main>
 @endsection

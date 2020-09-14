@@ -4,7 +4,7 @@
     <meta name="description" content="">
     <meta name="author" content="Gergely Mezei">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Dashboard Template · Bootstrap</title>
+    <title>Ticket Management</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 
