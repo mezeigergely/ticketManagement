@@ -14,19 +14,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        //$messages = ['name.required' => 'Name is required', 'email.required'=>'E-mail is required.'];
         $request->validate([
             'name' => 'required|min:4',
             'email' => 'required',
         ]);
 
-        /*
-        User::create([
-            'name' => request('name'),
-            'email' => request('email'),
-        ]);
-
-        */
 
         $user = new User;
         $user->name = $request->name;

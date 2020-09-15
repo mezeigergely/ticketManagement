@@ -3,15 +3,16 @@
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use Symfony\Component\Console\Input\Input;
 
-
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('start');
 });
 
 Route::get('/tickets/', [TicketController::class, 'index']);
@@ -34,7 +35,7 @@ Route::get('/success/{ticket}', [TicketController::class, 'success']);
 
 Route::get('/tickets/create', [TicketController::class, 'list']);
 
-//Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
+
 
 Route::get('/tickets/{id}', function ($id) {
 
